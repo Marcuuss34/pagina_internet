@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Crear Nuevo Paquete</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="/" id="logo"><img src="/src/img/logo.jpg"></a>
+            <nav>
+                <ul class="nav">
+                    <li><a href="/html/index.html">Paquetes</a></li>
+                    <li><a href="/html/solicitudes.html">Solicitudes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Aquí puedes agregar tu formulario o contenido para la creación de paquetes -->
+        <form id="formCrearPaquete" class="form-crear-paquete">
+            <main>
+                <form id="formCrearPaquete" class="form-crear-paquete">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre-input" name="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="velocidad">Velocidad:</label>
+                        <input type="text" id="velocidad-input" name="velocidad" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="text" id="precio-input" name="precio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duracion">Duración:</label>
+                        <input type="text" id="duracion-input" name="duracion" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="datosIncluidos">Datos incluidos:</label>
+                        <input type="text" id="datosIncluidos-input" name="datosIncluidos" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoConexion">Tipo de conexión:</label>
+                        <input type="text" id="tipoConexion-input" name="tipoConexion" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label><br>
+                        <textarea id="descripcion" name="descripcion-input" rows="4" cols="50" required></textarea>
+                    </div>
+
+                    <button type="submit" id="crearPaqueteSubmit">Crear Paquete</button>
+                </form>
+            </main>
+        </form>
+    </main>
+
+    <script src="/js/crearPaquete-Script.js"></script>
+</body>
+
+</html>
