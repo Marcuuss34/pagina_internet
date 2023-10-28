@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style_menu.css">
     <title>Responsive Dashboard Design #1 | AsmrProg</title>
 </head>
@@ -57,15 +58,52 @@
 
         <!-- Main Content -->
         <main>
-            <h1>Paquetes</h1>
-            <div class="progress">
-                <button><a href="crearPaquete.php">Nuevo paquete</a></button>
-            </div>
-            <!-- Analyses -->
-            <div class="analyse">
-                <?php include 'cargarInfoConexion.php'; ?>
-            </div>
-            <!-- End of Analyses -->
+            <h1>Crear nuevo paquete</h1>
+
+            <form id="formCrearPaquete" class="form-crear-paquete" action="cargarInfo.php" method="post">
+                <main>
+                    <form id="formCrearPaquete" class="form-crear-paquete">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre-input" name="nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="velocidad">Velocidad:</label>
+                            <input type="text" id="velocidad-input" name="velocidad" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="precio">Precio:</label>
+                            <input type="text" id="precio-input" name="precio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duracion">Duración:</label>
+                            <input type="number" id="duracion-input" name="duracion" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="datosIncluidos">Datos incluidos:</label>
+                            <input type="text" id="datosIncluidos-input" name="datosIncluidos" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipoConexion">Tipo de conexión:</label>
+                            <input type="text" id="tipoConexion-input" name="tipoConexion" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción:</label><br>
+                            <textarea id="descripcion" name="descripcion-input" rows="4" cols="50" required></textarea>
+                        </div>
+                        <div class="progress">
+                            <button type="submit" id="crearPaqueteSubmit">Crear Paquete</button>
+                        </div>
+                    </form>
+                </main>
+            </form>
+
         </main>
         <!-- End of Main Content -->
 
@@ -149,14 +187,6 @@
             window.location.href = "solicitudes.php";
         });
     </script>
-    <script>
-        function confirmarEliminacion(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar este paquete?')) {
-                window.location.href = 'eliminarPaqueteConexion.php?id=' + id;
-            }
-        }
-    </script>
-
 </body>
 
 </html>
