@@ -24,15 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             // Usuario válido
-            header("Location: dashboard.php"); // Redirigir al usuario a menu.html
+            header("Location: html/index.html"); // Redirigir al usuario a menu.html
             exit();
         } else {
-           echo "Usuario y contraseña incorrectos";
-          
+            echo "Usuario y contraseña incorrectos";
+
         }
     } else {
         // Los campos de correo y contraseña no están configurados en la solicitud POST
-        echo  "Campos de correo y contraseña no especificados";
+        echo "Campos de correo y contraseña no especificados";
     }
 }
 

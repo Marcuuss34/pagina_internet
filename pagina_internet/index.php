@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
@@ -13,6 +14,7 @@
 
     <title>FORMULARIO DE REGISTRO E INICIO DE SESION</title>
 </head>
+
 <body>
     <div class="container-form register">
         <div class="information">
@@ -26,47 +28,47 @@
 
         </div>
         <div class="form-information">
-           <div class="form-information-childs">
-               <h2>Crear una Cuenta</h2>
-               <div class="icons">
-                   
-               </div>
-               
-               <form class="form" method="post" action="send.php" enctype="multipart/form-data">
-                     <label>
+            <div class="form-information-childs">
+                <h2>Crear una Cuenta</h2>
+                <div class="icons">
+
+                </div>
+
+                <form class="form" method="post" action="send.php" enctype="multipart/form-data">
+                    <label>
                         <i class='bx bx-user'></i>
                         <input id="_nombre_ " type="text" name="nombre" placeholder="Nombre">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-user'></i>
                         <input id="_nombre_ " type="text" name="apellido1" placeholder="Apellido Paterno">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-user'></i>
                         <input id="_nombre_ " type="text" name="apellido2" placeholder="Apellido Materno">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-user'></i>
                         <input id="_nombre_ " type="text" name="telefono" placeholder="Telefono">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-user'></i>
                         <input id="_usuario_" type="text" name="usuario" placeholder="Username">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-envelope'></i>
                         <input id="_correo_" type="email" name="correo_electronico" placeholder="Correo Electronico">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-lock-alt'></i>
                         <input id="_pssword_" type="password" name="contrasena" placeholder="Contraseña">
-                     </label>
+                    </label>
 
-                     <input type="submit" name="send" value="Enviar">
-               </form>
-               
+                    <input type="submit" name="send" value="Enviar">
+                </form>
 
-           </div>
+
+            </div>
         </div>
     </div>
 
@@ -81,25 +83,25 @@
             </div>
 
         </div>
-        <div class="form-information" >
-           <div class="form-information-childs">
-               <h2>Iniciar Sesión</h2>
-               <div class="icons">
-                   
-               </div>
-               <form class="form" method="post" action="procesar_inicio_sesion.php">
-                     <label>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Iniciar Sesión</h2>
+                <div class="icons">
+
+                </div>
+                <form class="form" method="post" action="procesar_inicio_sesion.php">
+                    <label>
                         <i class='bx bx-envelope'></i>
                         <input type="email" name="email" placeholder="Correo Electronico">
-                     </label>
-                     <label>
+                    </label>
+                    <label>
                         <i class='bx bx-lock-alt'></i>
                         <input type="password" name="pass" placeholder="Contraseña">
-                     </label>
-                    
-                     <input type="submit" value="Iniciar Sesión" id="iniciar-sesion-button">
-               </form>
-           </div>
+                    </label>
+
+                    <input type="submit" value="Iniciar Sesión" id="iniciar-sesion-button">
+                </form>
+            </div>
         </div>
     </div>
     <script src="docs/script.js"></script>
@@ -108,8 +110,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    
+
 </body>
 
 </html>
-
