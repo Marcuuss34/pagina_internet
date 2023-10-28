@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             // Usuario válido
-            header("Location: html/index.html"); // Redirigir al usuario a menu.html
+            header("Location: dashboard.php"); // Redirigir al usuario a menu.html
             exit();
         } else {
             echo "Usuario y contraseña incorrectos";

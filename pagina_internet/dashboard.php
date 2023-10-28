@@ -27,63 +27,23 @@
             </div>
 
             <div class="sidebar">
-                <a href="#" id="dashboard" class="active">
+                <a href="#" id="paquetes" class="active">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
-                    <h3>Dashboard</h3>
+                    <h3>Paquetes</h3>
                 </a>
                 <a href="#" id="users">
                     <span class="material-icons-sharp">
                         person_outline
                     </span>
-                    <h3>Users</h3>
+                    <h3>Usuarios</h3>
                 </a>
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        receipt_long
-                    </span>
-                    <h3>History</h3>
-                </a>
-                <a href="#" id="analitics">
-                    <span class="material-icons-sharp">
-                        insights
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="#" id="tickets_link">
+                <a href="#" id="solicitudes">
                     <span class="material-icons-sharp">
                         mail_outline
                     </span>
-                    <h3>Tickets</h3>
-                    <span class="message-count">27</span>
-                </a>
-                
-
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        inventory
-                    </span>
-                    <h3>Sale List</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        report_gmailerrorred
-                    </span>
-                    <h3>Reports</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        settings
-                    </span>
-                    <h3>Settings</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        add
-                    </span>
-                    <h3>New Login</h3>
+                    <h3>Solicitudes</h3>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">
@@ -97,57 +57,10 @@
 
         <!-- Main Content -->
         <main>
-            <h1>Dashboard</h1>
+            <h1>Paquetes</h1>
             <!-- Analyses -->
             <div class="analyse">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Total Sales</h3>
-                            <h1>$65,024</h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>+81%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visits">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Site Visit</h3>
-                            <h1>24,981</h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>-48%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="searches">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Searches</h3>
-                            <h1>14,147</h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>+21%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php include 'cargarInfo.php'; ?>
             </div>
             <!-- End of Analyses -->
 
@@ -239,65 +152,9 @@
                 </div>
             </div>
 
-            <div class="reminders">
-                <div class="header">
-                    <h2>Reminders</h2>
-                    <span class="material-icons-sharp">
-                        notifications_none
-                    </span>
-                </div>
-
-                <div class="notification">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3>Workshop</h3>
-                            <small class="text_muted">
-                                08:00 AM - 12:00 PM
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
-                </div>
-
-                <div class="notification deactive">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                            edit
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3>Workshop</h3>
-                            <small class="text_muted">
-                                08:00 AM - 12:00 PM
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
-                </div>
-
-                <div class="notification add-reminder">
-                    <div>
-                        <span class="material-icons-sharp">
-                            add
-                        </span>
-                        <3>Add Reminder</h3>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
 
+    </div>
 
     </div>
 
@@ -305,26 +162,37 @@
     <script src="index_menu.js"></script>
 
     <script>
-    // Obtén el elemento del enlace por su id
-    var menuLink = document.getElementById("dashboard");
+        // Obtén el elemento del enlace por su id
+        var menuLink = document.getElementById("paquetes");
 
-    // Agrega un controlador de eventos "click" al enlace
-    menuLink.addEventListener("click", function () {
-        // Redirige al usuario a "menu2.php"
-        window.location.href = "menu2.php";
-    });
+        // Agrega un controlador de eventos "click" al enlace
+        menuLink.addEventListener("click", function () {
+            // Redirige al usuario a "menu2.php"
+            window.location.href = "dashboard.php";
+        });
     </script>
 
-<script>
-    // Obtén el elemento del enlace por su id
-    var menuLink = document.getElementById("analitics");
+    <script>
+        // Obtén el elemento del enlace por su id
+        var menuLink = document.getElementById("users");
 
-    // Agrega un controlador de eventos "click" al enlace
-    menuLink.addEventListener("click", function () {
-        // Redirige al usuario a "menu2.php"
-        window.location.href = "analitics.php";
-    });
-</script>
+        // Agrega un controlador de eventos "click" al enlace
+        menuLink.addEventListener("click", function () {
+            // Redirige al usuario a "menu2.php"
+            window.location.href = "users.php";
+        });
+    </script>
+
+    <script>
+        // Obtén el elemento del enlace por su id
+        var menuLink = document.getElementById("solicitudes");
+
+        // Agrega un controlador de eventos "click" al enlace
+        menuLink.addEventListener("click", function () {
+            // Redirige al usuario a "menu2.php"
+            window.location.href = "solicitudes.php";
+        });
+    </script>
 </body>
 
 </html>
