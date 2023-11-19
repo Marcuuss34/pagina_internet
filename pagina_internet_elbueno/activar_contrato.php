@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test";
+$dbname = "app";
 
 $connection = new mysqli($servername, $username, $password, $dbname);
 
@@ -11,12 +11,7 @@ if ($connection->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-
-if (
-    isset($_GET['idContrato']) && !empty($_GET['idContrato'])
-) {
-    
-
+if (isset($_GET['idContrato']) && !empty($_GET['idContrato'])) {
     $idContrato = mysqli_real_escape_string($connection, $_GET['idContrato']);
 
     $sqlUsuario = "SELECT estado_contrato FROM contratos WHERE idContrato = $idContrato";
@@ -38,9 +33,8 @@ if (
     $insertQuery = "INSERT INTO contratos_detalles (idContrato, numero_pago, fecha_pago, estado) VALUES (?, ?, ?, ?)";
     $stmt = $connection->prepare($insertQuery);
 
-    $update_query = "UPDATE contratos SET estado_contrato = 'COMPLETADO' WHERE idContrato ='".$idContrato. "' AND estado_contrato = 'PENDIENTE'";
+    $update_query = "UPDATE contratos SET estado_contrato = 'COMPLETADO' WHERE idContrato ='" . $idContrato . "' AND estado_contrato = 'PENDIENTE'";
     $result = mysqli_query($connection, $update_query);
-    
 
     while (true) {
         $fecha_pago = date("Y-m-d", strtotime($fecha_inicio . " +$numero_pago months")); // Convierte la fecha al formato "yyyy-mm-dd"
@@ -54,19 +48,23 @@ if (
         $stmt->execute();
         $numero_pago++;
     }
-    
+
     if ($stmt->execute()) {
         // La inserción se realizó con éxito
         // También, la actualización del estado se realizó con éxito
         echo '<script>alert("Contrato activado con éxito.");</script>';
         echo '<script>window.location.href = "solicitudes.php";</script>';
+
+        // Ejecutar send_push.php mediante una solicitud HTTP
+        $url = "http://localhost/conexion_remota/send_push.php?msg=&titulo=Titulo&mensaje=Mensaje&idUsuario=1";
+        $response = file_get_contents($url);
+
+        // Puedes verificar la respuesta si es necesario
+        // echo $response;
     } else {
         // Hubo un error en la inserción o actualización
         echo "Error al activar el contrato: " . $stmt->error;
         $stmt->close();
     }
-
 }
-
-
 ?>
