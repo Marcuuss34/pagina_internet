@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "app";
+$dbname = "test";
 
 $connection = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,10 +14,11 @@ if ($connection->connect_error) {
 if (isset($_GET['idContrato']) && !empty($_GET['idContrato'])) {
     $idContrato = mysqli_real_escape_string($connection, $_GET['idContrato']);
 
-    $sqlUsuario = "SELECT estado_contrato FROM contratos WHERE idContrato = $idContrato";
+    $sqlUsuario = "SELECT estado_contrato, idUsuario FROM contratos WHERE idContrato = $idContrato";
     $resultUsuario = $connection->query($sqlUsuario);
     $rowUsuario = $resultUsuario->fetch_assoc();
     $estado_contrato = $rowUsuario["estado_contrato"];
+    $idUsuario = $rowUsuario["idUsuario"];
 
     // Obtiene la fecha actual
     $fecha_actual = date("Y-m-d");
@@ -55,8 +56,9 @@ if (isset($_GET['idContrato']) && !empty($_GET['idContrato'])) {
         echo '<script>alert("Contrato activado con éxito.");</script>';
         echo '<script>window.location.href = "solicitudes.php";</script>';
 
+  
         // Ejecutar send_push.php mediante una solicitud HTTP
-        $url = "http://localhost/conexion_remota/send_push.php?msg=&titulo=Titulo&mensaje=Mensaje&idUsuario=1";
+        $url = "http://localhost/conexion_remota/send_push.php?msg=&titulo=Titulo&mensaje=$idContrato&idUsuario=$idUsuario";
         $response = file_get_contents($url);
 
         // Puedes verificar la respuesta si es necesario
