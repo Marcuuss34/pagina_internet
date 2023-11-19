@@ -1,17 +1,7 @@
 <?php
 $mensajeError = "";
 // Conexión a la base de datos (Asegúrate de completar los datos de conexión)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "test";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Comprobar la conexión
-if ($conn->connect_error) {
-    die("Conexión a la base de datos fallida: " . $conn->connect_error);
-}
+include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["email"]) && isset($_POST["pass"])) {

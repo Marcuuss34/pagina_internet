@@ -1,17 +1,5 @@
 <?php
-// Establece la conexión a tu base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "test";
-
-// Crea la conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+include("conexion.php");
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

@@ -6,20 +6,13 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Conexión a la base de datos (Asegúrate de completar los datos de conexión)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "test";
-// Inserción exitosa, ahora envía el token por correo
+include("conexion.php");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (
-        isset($_POST['usuario']) && isset($_POST['correo_electronico']) && isset($_POST['contrasena'] ))
-    {
-       
+        isset($_POST['usuario']) && isset($_POST['correo_electronico']) && isset($_POST['contrasena'])
+    ) {
+
         //$imagen_perfil = $_FILES["imagen"]["tmp_name"];
         $usuario = $_POST["usuario"];
         $correo_electronico = $_POST["correo_electronico"];
@@ -28,75 +21,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         //$imagenBinaria = file_get_contents($imagen_perfil);
 
         //Load Composer's autoloader
-       require 'PHPMailer/Exception.php';
-       require 'PHPMailer/PHPMailer.php';
-       require 'PHPMailer/SMTP.php';
+        require 'PHPMailer/Exception.php';
+        require 'PHPMailer/PHPMailer.php';
+        require 'PHPMailer/SMTP.php';
 
-//Create an instance; passing `true` enables exceptions
-       $mail = new PHPMailer(true);
-       $clave_aleatoria1 = md5(uniqid(rand(), true));
-       $clave_aleatoria = substr($clave_aleatoria1, 0, 10);
-       // Realiza una consulta para verificar si el correo ya está en uso
-       $checkEmailQuery = "SELECT * FROM usuarios_administradores WHERE correo_electronico = ?";
-       $stmt = $conn->prepare($checkEmailQuery);
-       $stmt->bind_param("s", $correo_electronico);
-       $stmt->execute();
-       $result = $stmt->get_result();
-       $row = $result->fetch_assoc();
-       $idUsuario = $row['idUsuario_Administrador'];
-
-       if ($result->num_rows > 0) {
-          
-           echo "El correo electrónico ya está en uso. Introduce otro.";
-       } 
-       else 
-       {
-
-        $insertQuery = "INSERT INTO usuarios_administradores (usuario, correo_electronico, contrasena, clave_aleatoria) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("ssss", $usuario, $correo_electronico, $contrasena, $clave_aleatoria);
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        $clave_aleatoria1 = md5(uniqid(rand(), true));
+        $clave_aleatoria = substr($clave_aleatoria1, 0, 10);
+        // Realiza una consulta para verificar si el correo ya está en uso
+        $checkEmailQuery = "SELECT * FROM usuarios_administradores WHERE correo_electronico = ?";
+        $stmt = $conn->prepare($checkEmailQuery);
+        $stmt->bind_param("s", $correo_electronico);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $idUsuario = $row['idUsuario_Administrador'];
 
-        try 
-        {
-            $checkEmailQuery = "SELECT * FROM usuarios_administradores WHERE correo_electronico = ?";
-            $stmt = $conn->prepare($checkEmailQuery);
-            $stmt->bind_param("s", $correo_electronico);
+        if ($result->num_rows > 0) {
+
+            echo "El correo electrónico ya está en uso. Introduce otro.";
+        } else {
+
+            $insertQuery = "INSERT INTO usuarios_administradores (usuario, correo_electronico, contrasena, clave_aleatoria) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($insertQuery);
+            $stmt->bind_param("ssss", $usuario, $correo_electronico, $contrasena, $clave_aleatoria);
             $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            $idUsuario = $row['idUsuario'];
-            //$idUsuario=123;
-            //Server settings
-                               //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'marudzul17@gmail.com';                     //SMTP username
-            $mail->Password   = 'ybbzdrouirashsfg';                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
-            //Recipients
-            $mail->setFrom('marudzul17@gmail.com', 'Contact form');
-            $mail->addAddress($correo_electronico, $usuario);     //Add a recipient
-            
-           
 
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Confirmacion de registro';
-            $mail->Body    = 'Para confirmar tu registro, haz clic en el siguiente enlace: http://localhost/pagina_internet/activar.php?clave_aleatoria=' . $clave_aleatoria ;
-            //'&imagen_perfil=' . $imagenBinaria;
-            
-            $mail->send();
-            echo 'Message has been sent';
-            header("Location: index.php"); 
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            try {
+                $checkEmailQuery = "SELECT * FROM usuarios_administradores WHERE correo_electronico = ?";
+                $stmt = $conn->prepare($checkEmailQuery);
+                $stmt->bind_param("s", $correo_electronico);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $idUsuario = $row['idUsuario'];
+                //$idUsuario=123;
+                //Server settings
+                //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+                $mail->Username = 'marudzul17@gmail.com';                     //SMTP username
+                $mail->Password = 'ybbzdrouirashsfg';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                //Recipients
+                $mail->setFrom('marudzul17@gmail.com', 'Contact form');
+                $mail->addAddress($correo_electronico, $usuario);     //Add a recipient
+
+
+
+                //Content
+                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->Subject = 'Confirmacion de registro';
+                $mail->Body = 'Para confirmar tu registro, haz clic en el siguiente enlace: http://localhost/pagina_internet/activar.php?clave_aleatoria=' . $clave_aleatoria;
+                //'&imagen_perfil=' . $imagenBinaria;
+
+                $mail->send();
+                echo 'Message has been sent';
+                header("Location: index.php");
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+
         }
 
-       }
-       
     }
 }

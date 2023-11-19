@@ -1,17 +1,5 @@
 <?php
-// Configura tus credenciales de la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "test";
-
-// Crea una conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+include("conexion.php");
 
 // Consulta la base de datos para obtener los datos necesarios
 $sql = "SELECT idContrato, idUsuario, idUsuario_Administrador, idPaquete, 
@@ -25,7 +13,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // Output data de cada fila
     while ($row = $result->fetch_assoc()) {
-      
+
         $idUsuario = $row["idUsuario"];
         $idPaquete = $row["idPaquete"];
 
@@ -40,15 +28,15 @@ if ($result->num_rows > 0) {
         $resultPaquete = $conn->query($sqlPaquete);
         $rowPaquete = $resultPaquete->fetch_assoc();
         $nombrePaquete = $rowPaquete["nombre"];
-       
+
 
 
         echo '<div class="sales">
             <div class="status">
                 <div class="info">
                     <h3>' . $nombrePaquete . '</h3>
-                    <h1>' . $nombre . ' '. $apellido1 . ' '. $apellido2 .'</h1>
-                    <p>Duracion de contrato: ' . $row["duracion_contrato"] . ' año'.'</p>
+                    <h1>' . $nombre . ' ' . $apellido1 . ' ' . $apellido2 . '</h1>
+                    <p>Duracion de contrato: ' . $row["duracion_contrato"] . ' año' . '</p>
                     <p>Estado de contrato: ' . $row["estado_contrato"] . '</p>
                 </div>
                 <div class="progress">
